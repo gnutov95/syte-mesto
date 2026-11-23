@@ -194,6 +194,47 @@ section{position:relative;overflow:hidden}
 .c-yc{box-shadow:10px 10px 0 var(--orange)!important}
 .c-yc b{color:var(--violet)}
 
+
+/* ========== ЛОГОТИП ========== */
+.logo{padding:0;display:block;line-height:0;overflow:hidden}
+.logo img{display:block;height:54px;width:auto}
+.hero-logo{position:relative;z-index:3;width:clamp(200px,24vw,320px);margin-bottom:34px;border:5px solid var(--paper);box-shadow:8px 8px 0 var(--pink);transform:rotate(-3deg);background:#000;line-height:0}
+.hero-logo img{width:100%;display:block}
+.foot-logo{height:46px;width:auto;vertical-align:middle;margin-right:14px;border:2px solid #333}
+
+/* ========== БАРБЕР 2 (Глеб) ========== */
+.barber-grid.rev{margin-top:150px}
+.barber-grid.rev .photos{order:2}
+.photos.solo{min-height:0}
+.photos.solo .photo{position:relative;width:min(100%,460px);margin:0 auto;transform:rotate(4deg)}
+.photos.solo .photo.rv.in{transform:rotate(4deg)}
+.photos.solo .photo::before{background:rgba(25,230,255,.85)}
+.name.cyan{color:var(--cyan);transform:rotate(2deg)}
+.role.y{color:var(--yellow);transform:rotate(-1.5deg)}
+
+/* ========== ЯНДЕКС КАРТЫ: ОТЗЫВЫ И ФОТО ========== */
+.reviews{padding:150px 6vw 160px;background:var(--cyan);color:var(--ink);
+  background-image:radial-gradient(circle,rgba(0,0,0,.14) 2px,transparent 2.5px),radial-gradient(ellipse at 85% 15%,rgba(255,47,166,.5),transparent 50%);background-size:16px 16px,100% 100%}
+.reviews::before{content:"";position:absolute;left:0;right:0;top:0;height:80px;background:var(--drip-pink) repeat-x;background-size:200px 70px}
+.reviews .h2 em{color:var(--yellow);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink)}
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:3}
+.rev-frame{background:var(--paper);border:6px solid var(--ink);box-shadow:14px 14px 0 var(--ink);padding:10px;position:relative;transform:rotate(-1.5deg)}
+.rev-frame::before{content:"";position:absolute;top:-20px;left:50%;width:120px;height:32px;background:rgba(255,212,0,.9);transform:translateX(-50%) rotate(3deg);z-index:5;border:2px solid rgba(0,0,0,.2)}
+.rev-frame iframe{display:block;width:100%;height:620px;border:0;background:#fff}
+.rev-frame.rv.in{transform:rotate(-1.5deg)}
+.rev-side{display:flex;flex-direction:column;gap:28px}
+.rev-side p{font-family:Arial,sans-serif;font-weight:700;font-size:1.2rem;line-height:1.55;background:var(--paper);padding:16px 20px;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.ph-btn{display:block;text-decoration:none;color:var(--ink);background:var(--yellow);border:5px solid var(--ink);box-shadow:10px 10px 0 var(--pink);padding:26px;transition:.2s;transform:rotate(1.5deg)}
+.ph-btn:nth-of-type(2){background:var(--paper);box-shadow:10px 10px 0 var(--violet);transform:rotate(-1.2deg)}
+.ph-btn:hover{transform:rotate(0) scale(1.04)}
+.ph-btn.rv.in{transform:rotate(1.5deg)}
+.ph-btn:nth-of-type(2).rv.in{transform:rotate(-1.2deg)}
+.ph-btn.rv.in:hover{transform:rotate(0) scale(1.04)}
+.ph-btn small{display:block;font-size:.75rem;letter-spacing:4px;opacity:.65;margin-bottom:8px}
+.ph-btn b{display:block;font-family:'Rubik Mono One';font-size:clamp(1.3rem,3vw,2rem);line-height:1.1}
+.ph-btn .go{display:inline-block;margin-top:14px;background:var(--ink);color:var(--cyan);padding:8px 14px;font-size:.85rem;letter-spacing:2px}
+@media(max-width:800px){.rev-grid{grid-template-columns:1fr}.rev-frame iframe{height:520px}.barber-grid.rev .photos{order:0}.barber-grid.rev{margin-top:100px}.logo img{height:44px}}
+
 footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;background:#0b0b0d;color:#8f8f95}
 
 /* ========== анимации при прокрутке ========== */
@@ -216,12 +257,13 @@ footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;backgr
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.motto h2 span{opacity:1!important;transform:none!important}}
 </style>
+<link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
 <div class="progress" id="bar"></div>
 
 <nav>
-  <a href="#top" class="logo">МЕСТО</a>
+  <a href="#top" class="logo" aria-label="МЕСТО"><img src="logo-wide.png" alt="МЕСТО — мужские стрижки"></a>
   <a href="tel:+79040072757" class="btn">ЗАПИСАТЬСЯ ☎</a>
 </nav>
 
@@ -232,6 +274,7 @@ footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;backgr
   <div class="sticker s-star" data-speed="-0.2">100%<br>СТИЛЬ</div>
   <div class="fence"></div>
   <div class="curb"></div>
+  <div class="hero-logo rv"><img src="logo-wide.png" alt="Логотип МЕСТО — мужские стрижки"></div>
   <h1 class="title">МЕСТО</h1>
   <div class="tag">барбершоп для тех, кто не как все</div>
   <div class="scroll">ЛИСТАЙ ↓</div>
@@ -242,9 +285,9 @@ footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;backgr
 <section class="services" id="services">
   <h2 class="h2 rv">ЧТО <em>ДЕЛАЕМ</em></h2>
   <div class="cards">
-    <div class="card rv"><h3>СТРИЖКА</h3><p>Классика, фейд, андеркат — любая форма под твой типаж.</p><div class="price">от 1500 ₽</div></div>
+    <div class="card rv"><h3>СТРИЖКА</h3><p>Классика, фейд, андеркат — любая форма под твой типаж.</p><div class="price">от 2200 ₽</div></div>
     <div class="card rv" style="transition-delay:.1s"><h3>БОРОДА</h3><p>Моделирование и уход, чёткие линии, горячее полотенце.</p><div class="price">от 1000 ₽</div></div>
-    <div class="card rv" style="transition-delay:.2s"><h3>КОМПЛЕКС</h3><p>Стрижка + борода одним заходом. Выходишь — как с обложки.</p><div class="price">от 2300 ₽</div></div>
+    <div class="card rv" style="transition-delay:.2s"><h3>КОМПЛЕКС</h3><p>Стрижка + борода одним заходом. Выходишь — как с обложки.</p><div class="price">от 2600 ₽</div></div>
     <div class="card rv" style="transition-delay:.3s"><h3>УКЛАДКА</h3><p>Подберём стайлинг и научим повторять дома.</p><div class="price">от 700 ₽</div></div>
   </div>
 </section>
@@ -265,6 +308,32 @@ footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;backgr
         <div class="stat"><b>5000+</b><span>СТРИЖЕК</span></div>
         <div class="stat"><b>100%</b><span>ЭМОЦИЙ</span></div>
       </div>
+    </div>
+  </div>
+
+  <div class="barber-grid rev">
+    <div class="photos solo">
+      <div class="photo rv right"><div class="in-img"><div class="ph">ФОТО<br>файл barber3.png рядом с index.html</div><img src="barber3.png" alt="Глеб — барбер" onerror="this.style.display='none'"></div></div>
+    </div>
+    <div>
+      <div class="name cyan rv">Глеб</div>
+      <div class="role y rv">БАРБЕР · КОМАНДА «МЕСТА»</div>
+      <p class="rv">Глеб — про стиль и точность. Чистые линии, аккуратный фейд и форма, которая держится до следующего визита.</p>
+      <p class="rv">Подберёт стрижку под твои черты лица и образ жизни — и объяснит, как укладывать дома, чтобы выглядело так же, как в кресле.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <h2 class="h2 rv">МЕСТО <em>НА КАРТАХ</em></h2>
+  <div class="rev-grid">
+    <div class="rev-frame rv left">
+      <iframe title="Отзывы о барбершопе Место на Яндекс Картах" loading="lazy" src="https://yandex.ru/maps-reviews-widget/58517162240?comments"></iframe>
+    </div>
+    <div class="rev-side">
+      <p class="rv right">Живые отзывы и фото наших клиентов — прямо с Яндекс Карт. Посмотри, как мы стрижём, и убедись сам.</p>
+      <a class="ph-btn rv right" style="transition-delay:.1s" href="https://yandex.ru/maps/org/mesto/58517162240/gallery/" target="_blank" rel="noopener"><small>ФОТОГРАФИИ</small><b>Фото с Яндекс Карт</b><span class="go">СМОТРЕТЬ ГАЛЕРЕЮ →</span></a>
+      <a class="ph-btn rv right" style="transition-delay:.2s" href="https://yandex.ru/maps/org/mesto/58517162240/reviews/" target="_blank" rel="noopener"><small>ОТЗЫВЫ</small><b>Все отзывы</b><span class="go">ЧИТАТЬ НА ЯНДЕКС КАРТАХ →</span></a>
     </div>
   </div>
 </section>
@@ -288,18 +357,18 @@ footer{padding:26px;text-align:center;font-size:.75rem;letter-spacing:3px;backgr
 <section class="motto" id="motto">
   <small class="rv">НАШ ДЕВИЗ</small>
   <h2><span class="l1">Свой стиль —</span><span class="l2">своё МЕСТО</span></h2>
-  <div class="sig rv">— Аргишти и команда</div>
+  <div class="sig rv">— Аргишти, Глеб и команда</div>
   <div class="cta-row">
     <a href="#" class="cta cta-yc yc rv" target="_blank" rel="noopener">ОНЛАЙН-ЗАПИСЬ ✂</a>
     <a href="tel:+79040072757" class="cta rv">ПОЗВОНИТЬ: +7 (904) 007-27-57</a>
   </div>
 </section>
 
-<footer>© МЕСТО БАРБЕРШОП · ТВЕРЬ, СПОРТИВНЫЙ ПЕР., 8 · +7 (904) 007-27-57</footer>
+<footer><img class="foot-logo" src="logo-wide.png" alt="МЕСТО">© МЕСТО БАРБЕРШОП · ТВЕРЬ, СПОРТИВНЫЙ ПЕР., 8 · +7 (904) 007-27-57</footer>
 
 <script>
 // >>> ВСТАВЬ СЮДА ССЫЛКУ НА ЗАПИСЬ В YCLIENTS, например 'https://n2828525.yclients.ru/'
-const YCLIENTS_URL = 'http://new.yclients.com/'; 
+const YCLIENTS_URL = 'https://n2828525.yclients.ru/'; 
 if (YCLIENTS_URL) document.querySelectorAll('.yc').forEach(a => { a.href = YCLIENTS_URL; a.classList.add('on'); });
 
 const bar=document.getElementById('bar');
