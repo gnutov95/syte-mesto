@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Галерея работ — МЕСТО барбершоп</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Russo+One&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0a0b;
+  --ink:#141416;
+  --wall:#1d1e22;
+  --gray:#8f8f95;
+  --white:#ffffff;
+  --accent:#ffd400;
+  --drip-black:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='90'><g fill='%230a0a0b'><rect x='0' y='0' width='260' height='16'/><rect x='14' width='12' height='60' rx='6'/><rect x='58' width='16' height='34' rx='8'/><rect x='104' width='10' height='82' rx='5'/><rect x='150' width='14' height='44' rx='7'/><rect x='196' width='12' height='66' rx='6'/><rect x='234' width='10' height='30' rx='5'/></g></svg>");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background-color:var(--black);
+  /* Добавил текстуру как на главной, чтобы страница не выглядела "голой" */
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 2px,transparent 2.5px);
+  background-size:20px 20px;
+  color:var(--white);
+  font-family:'Russo One',sans-serif;
+  overflow-x:hidden;
+}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:250;opacity:.12;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:350;display:flex;justify-content:center;align-items:center;gap:14px;padding:10px 4vw;background:rgba(10,10,11,.85);border-bottom:2px solid var(--white);box-shadow:4px 4px 0 var(--white);backdrop-filter:blur(6px)}
+.logo{font-family:'Rubik Mono One';font-size:0.8rem;color:var(--white);background:var(--black);padding:4px 10px;text-decoration:none;transform:rotate(-1deg);border:2px solid var(--white);box-shadow:3px 3px 0 var(--white);display:inline-flex;align-items:center;line-height:0}
+.logo img{width:90px;height:auto;display:block}
+nav .btn{font-size:.8rem;color:var(--black);background:var(--white);padding:7px 14px;text-decoration:none;border:3px solid var(--black);box-shadow:4px 4px 0 var(--black);transform:rotate(1deg);transition:.25s;white-space:nowrap}
+nav .btn:hover{transform:rotate(-1deg) scale(1.03);box-shadow:6px 6px 0 var(--gray)}
+
+.container{max-width:1150px;margin:140px auto 80px;padding:0 20px;position:relative;z-index:3}
+h1{font-family:'Rubik Mono One';font-size:clamp(3rem,12vw,6rem);line-height:.9;color:var(--white);-webkit-text-stroke:5px var(--black);paint-order:stroke fill;text-shadow:8px 8px 0 var(--black);text-align:center;margin-bottom:10px;transform:rotate(-1deg)}
+.subtitle{font-family:'Marck Script';font-size:clamp(1.4rem,3vw,2rem);color:var(--black);background:var(--white);padding:6px 20px;text-align:center;border:4px solid var(--black);box-shadow:6px 6px 0 var(--gray);transform:rotate(1deg);margin:0 auto 60px;max-width:fit-content}
+
+.gallery-title{font-family:'Rubik Mono One';font-size:clamp(1.8rem,5vw,2.6rem);color:var(--white);-webkit-text-stroke:3px var(--black);paint-order:stroke fill;text-shadow:5px 5px 0 var(--black);text-align:center;margin-bottom:10px;margin-top:80px}
+/* ИСПРАВЛЕНО: добавлен стиль для em, которого не хватало */
+.gallery-title em{font-style:normal;color:var(--accent);-webkit-text-stroke:3px var(--black);paint-order:stroke fill;text-shadow:5px 5px 0 var(--black)}
+
+.gallery-sub{font-family:'Marck Script';font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--accent);text-align:center;margin-bottom:50px}
+
+/* ИСПРАВЛЕНО: конфликт grid и max-width у дочерних элементов */
+.photo-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 260px));
+  justify-content:center;
+  gap:22px;
+  position:relative;
+  z-index:3;
+}
+.photo-item{
+  position:relative;
+  border:5px solid var(--white);
+  box-shadow:8px 8px 0 var(--white);
+  transform:rotate(var(--r));
+  transition:.3s;
+  overflow:hidden;
+  background:var(--black);
+  width:100%; /* Убрал max-width отсюда, пусть управляет grid */
+}
+.photo-item:nth-child(odd){--r:-2deg}
+.photo-item:nth-child(even){--r:2deg}
+.photo-item:nth-child(3n){--r:-1.5deg}
+.photo-item:nth-child(4n){--r:2.5deg}
+
+.photo-item:hover{transform:rotate(0) scale(1.03);z-index:6;box-shadow:12px 12px 0 var(--gray)}
+.photo-img{aspect-ratio:4/5;width:100%;background:var(--wall);overflow:hidden;position:relative}
+.photo-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(100%) contrast(1.1);transition:.4s}
+.photo-item:hover .photo-img img{filter:grayscale(0%) contrast(1.05)}
+
+.back-link{display:block;max-width:fit-content;margin:80px auto 0;font-family:'Rubik Mono One';font-size:1rem;color:var(--white);background:var(--black);padding:14px 32px;text-decoration:none;border:3px solid var(--white);box-shadow:6px 6px 0 var(--white);transform:rotate(-2deg);transition:.3s;text-align:center}
+.back-link:hover{transform:rotate(2deg) scale(1.03);box-shadow:8px 8px 0 var(--gray)}
+
+/* Анимации появления (как на главной) */
+.rv{opacity:0;transform:translateY(60px) rotate(5deg) scale(.95);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,1.2,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:800px){
+  .photo-grid{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:16px}
+  .container{margin-top:120px}
+  nav{gap:8px;padding:10px 3vw}
+  .logo img{width:70px}
+  nav .btn{font-size:.7rem;padding:6px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+<link rel="icon" href="favicon.png" type="image/png">
+</head>
+<body>
+
+<nav>
+  <!-- ИСПРАВЛЕНО: ссылка на главную, а не на саму себя -->
+  <a href="index.html" class="logo" aria-label="МЕСТО"><img src="logo-wide.png" alt="МЕСТО — мужские стрижки"></a>
+  <a href="index.html" class="btn">ГЛАВНАЯ</a>
+  <a href="tel:+79040072757" class="btn">ЗАПИСАТЬСЯ ☎</a>
+</nav>
+
+<div class="container">
+  <h1 class="rv">МЕСТО</h1>
+  <div class="subtitle rv">мужские стрижки</div>
+
+  <div class="gallery-title rv">ПРИМЕРЫ <em>СТРИЖЕК</em></div>
+  <div class="gallery-sub rv">фото работ наших барберов</div>
+  <div class="photo-grid">
+    <div class="photo-item rv" style="transition-delay:.05s"><div class="photo-img"><img src="8.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.1s"><div class="photo-img"><img src="9.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.15s"><div class="photo-img"><img src="10.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.2s"><div class="photo-img"><img src="11.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.25s"><div class="photo-img"><img src="12.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.3s"><div class="photo-img"><img src="13.jpg" alt="Пример стрижки"></div></div>
+    <div class="photo-item rv" style="transition-delay:.35s"><div class="photo-img"><img src="14.jpg" alt="Пример стрижки"></div></div>
+  </div>
+
+  <div class="gallery-title rv">ИНТЕРЬЕР <em>БАРБЕРШОПА</em></div>
+  <div class="gallery-sub rv">атмосфера места</div>
+  <div class="photo-grid">
+    <div class="photo-item rv" style="transition-delay:.05s"><div class="photo-img"><img src="1.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.1s"><div class="photo-img"><img src="2.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.15s"><div class="photo-img"><img src="3.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.2s"><div class="photo-img"><img src="4.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.25s"><div class="photo-img"><img src="5.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.3s"><div class="photo-img"><img src="6.jpg" alt="Интерьер барбершопа"></div></div>
+    <div class="photo-item rv" style="transition-delay:.35s"><div class="photo-img"><img src="7.jpg" alt="Интерьер барбершопа"></div></div>
+  </div>
+
+  <div class="gallery-title rv">УСЛУГИ <em>БАРБЕРШОПА</em></div>
+  <div class="gallery-sub rv">наши работы в деталях</div>
+  <div class="photo-grid">
+    <!-- ИСПРАВЛЕНО: кириллица и пробелы в именах файлов заменены на транслит -->
+    <div class="photo-item rv" style="transition-delay:.05s"><div class="photo-img"><img src="barbershop-strizhka-pod-mashinku.png" alt="Стрижка под машинку"></div></div>
+    <div class="photo-item rv" style="transition-delay:.1s"><div class="photo-img"><img src="barbershop-zolotaya-biozavivka.png" alt="Золотая биозавивка"></div></div>
+    <div class="photo-item rv" style="transition-delay:.15s"><div class="photo-img"><img src="barbershop-udalenie-volos-voskom.png" alt="Удаление волос воском"></div></div>
+    <div class="photo-item rv" style="transition-delay:.2s"><div class="photo-img"><img src="barbershop-zolotaya-korrektsiya-borody.png" alt="Золотая коррекция бороды"></div></div>
+    <div class="photo-item rv" style="transition-delay:.25s"><div class="photo-img"><img src="brutalnoe-brityo-golovy-v-mramore.png" alt="Брутальное бритьё головы"></div></div>
+    <div class="photo-item rv" style="transition-delay:.3s"><div class="photo-img"><img src="kamuflyazh-sediny-zolotoy-mramornyy-stil.png" alt="Камуфляж седины"></div></div>
+  </div>
+
+  <div class="gallery-title rv">НАШИ <em>БАРБЕРЫ</em></div>
+  <div class="gallery-sub rv">мастера своего дела</div>
+  <div class="photo-grid">
+    <div class="photo-item rv" style="transition-delay:.05s"><div class="photo-img"><img src="argo.png" alt="Барбер Арго"></div></div>
+    <div class="photo-item rv" style="transition-delay:.15s"><div class="photo-img"><img src="gleb.png" alt="Барбер Глеб"></div></div>
+  </div>
+
+  <a href="index.html" class="back-link rv">← НА ГЛАВНУЮ</a>
+</div>
+
+<script>
+// ИСПРАВЛЕНО: добавлен скрипт анимации при скролле, чтобы страница ожила как главная
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+  }
+}),{threshold:0.15});
+
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
