@@ -215,6 +215,36 @@ section{position:relative;overflow:hidden;padding-top:90px}
 
 footer{padding:30px;text-align:center;font-size:.8rem;letter-spacing:4px;background:#050506;color:var(--gray);border-top:3px solid var(--ink)}
 
+/* ========== ФУТЕР ========== */
+footer.site-footer{position:relative;padding:0;text-align:left;font-size:1rem;letter-spacing:0;background:#050506;color:var(--white);border-top:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif}
+.site-footer::before{content:"";display:block;height:22px;background:repeating-linear-gradient(-45deg,var(--white) 0 14px,var(--black) 14px 28px);border-bottom:4px solid var(--white)}
+.site-footer::after{content:"МЕСТО";position:absolute;right:-1vw;bottom:54px;font-family:'Rubik Mono One';font-size:clamp(5rem,18vw,15rem);line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.06);pointer-events:none;white-space:nowrap}
+.f-wrap{position:relative;z-index:2;padding:64px max(6vw,calc((100% - 1100px)/2)) 50px;display:grid;grid-template-columns:1.05fr 1.5fr .85fr;gap:52px;align-items:start}
+.site-footer h3{position:relative;font-family:'Rubik Mono One';font-weight:400;font-size:1.05rem;line-height:1.25;letter-spacing:1px;color:var(--white);margin-bottom:26px;padding-bottom:14px}
+.site-footer h3::after{content:"";position:absolute;left:0;bottom:0;width:54px;height:5px;background:var(--accent)}
+.f-logo{display:inline-block;line-height:0;width:min(100%,230px);border:4px solid var(--white);box-shadow:7px 7px 0 #55555a;background:#000;transform:rotate(-2deg);transition:.3s}
+.f-logo:hover{transform:rotate(1deg) scale(1.03);box-shadow:10px 10px 0 var(--accent)}
+.f-logo img{width:100%;height:auto;display:block}
+.f-tag{margin-top:30px;font-family:'Marck Script';font-size:1.7rem;line-height:1.1;color:var(--accent);transform:rotate(-2deg);transform-origin:left}
+.f-contacts p{margin:0 0 16px}
+.f-row{display:flex;align-items:center;gap:14px}
+.f-ico{flex:none;width:40px;height:40px;border-radius:50%;background:var(--white);display:grid;place-items:center;transition:.25s}
+.f-ico svg{width:19px;height:19px;fill:var(--black)}
+.f-row a{color:var(--white);text-decoration:none;font-weight:600;font-size:1.05rem;line-height:1.35;border-bottom:2px solid rgba(255,255,255,.25);padding-bottom:1px;transition:.2s;overflow-wrap:anywhere}
+.f-row:hover .f-ico{background:var(--accent);transform:rotate(-8deg) scale(1.08)}
+.f-row a:hover{color:var(--accent);border-color:var(--accent)}
+.f-nav ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.f-nav a{display:inline-block;color:#c9c9ce;text-decoration:none;font-family:'Russo One',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;transition:.2s}
+.f-nav a::before{content:"→ ";color:var(--accent);opacity:0;margin-left:-1.4em;margin-right:.2em;transition:.2s}
+.f-nav a:hover{color:var(--white);padding-left:1.4em}
+.f-nav a:hover::before{opacity:1;margin-left:0}
+.requisites{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 28px;padding:22px max(6vw,calc((100% - 1100px)/2));background:#000;border-top:1px solid rgba(255,255,255,.14)}
+.requisites small{display:block;font-size:.78rem;line-height:1.65;color:var(--gray);letter-spacing:.2px}
+.requisites .f-copy{color:#6f6f75}
+.f-up{flex:none;font-family:'Rubik Mono One';font-size:.72rem;letter-spacing:2px;color:var(--black);background:var(--white);padding:10px 16px;text-decoration:none;border:3px solid var(--white);box-shadow:4px 4px 0 #55555a;transition:.25s}
+.f-up:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
+@media(max-width:1000px){.f-wrap{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
+
 .rv{opacity:0;transform:translateY(100px) rotate(5deg) scale(.92);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,1.2,.3,1)}
 .rv.in{opacity:1;transform:none}
 .rv.left{transform:translateX(-180px) rotate(-12deg)}
@@ -303,7 +333,16 @@ footer{padding:30px;text-align:center;font-size:.8rem;letter-spacing:4px;backgro
   .cta-big{font-size:clamp(1.2rem,5.8vw,1.6rem)}
   .cta-tel{font-size:clamp(.95rem,4.2vw,1.2rem);line-height:1.35}
   .cta-tel .nb{display:block;font-size:clamp(1.15rem,5.8vw,1.6rem);margin-top:4px}
-  footer{font-size:.66rem;letter-spacing:2px;line-height:1.7;padding:26px 6vw}
+  .f-wrap{grid-template-columns:1fr;gap:40px;padding:46px 6vw 36px}
+  .f-brand{display:flex;flex-direction:column;align-items:flex-start}
+  .f-logo{width:190px}
+  .f-tag{font-size:1.5rem;margin-top:24px}
+  .site-footer h3{font-size:.95rem;margin-bottom:22px}
+  .f-row a{font-size:1rem}
+  .f-nav ul{grid-template-columns:1fr 1fr;gap:14px 12px}
+  .f-nav a{font-size:.78rem;letter-spacing:1.5px}
+  .requisites{flex-direction:column;align-items:flex-start;padding:22px 6vw 28px}
+  .f-up{align-self:stretch;text-align:center;padding:13px 10px}
 }
 @media(max-width:380px){
   nav .btn{font-size:.62rem;padding:6px 8px}
@@ -331,7 +370,7 @@ footer{padding:30px;text-align:center;font-size:.8rem;letter-spacing:4px;backgro
   <h1 class="title rv">МЕСТО</h1>
   <div class="tag rv">мужские стрижки</div>
   <div class="big-cta rv">
-    <a href="#contacts" class="big-btn">ЗАПИСАТЬСЯ</a>
+    <a href="https://n2828525.yclients.ru/" class="big-btn">ЗАПИСАТЬСЯ</a>
   </div>
   <div class="scroll rv">ЛИСТАЙ ↓</div>
 </section>
@@ -515,7 +554,41 @@ footer{padding:30px;text-align:center;font-size:.8rem;letter-spacing:4px;backgro
   </div>
 </section>
 
-<footer>© МЕСТО БАРБЕРШОП · ТВЕРЬ, СПОРТИВНЫЙ ПЕР., 8 · +7 (904) 007-27-57</footer>
+<footer class="site-footer">
+  <div class="f-wrap">
+    <div class="f-brand">
+      <a href="#top" class="f-logo" aria-label="МЕСТО — на главную"><img src="logo-wide.png" alt="МЕСТО — мужские стрижки" loading="lazy" decoding="async"></a>
+      <div class="f-tag">Свой стиль — своё МЕСТО</div>
+    </div>
+
+    <div class="f-contacts">
+      <h3>Барбершоп «МЕСТО»</h3>
+      <p class="f-row"><span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></span><a href="https://yandex.ru/maps/org/mesto/58517162240/?indoorLevel=1&ll=35.899985%2C56.839068&z=16.8" target="_blank" rel="noopener">г. Тверь, пер. Спортивный, д. 8</a></p>
+      <p class="f-row"><span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg></span><a href="tel:+79036314267">+7 (903) 631-42-67</a></p>
+      <p class="f-row"><span class="f-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span><a href="mailto:fghh574.as@gmail.com">fghh574.as@gmail.com</a></p>
+    </div>
+
+    <div class="f-nav" role="navigation" aria-label="Разделы сайта">
+      <h3>Разделы</h3>
+      <ul>
+        <li><a href="#examples">Примеры</a></li>
+        <li><a href="#interior">Интерьер</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#team">Команда</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="requisites">
+    <div>
+      <small>ИП Казарян Аргишти Унанович · ИНН 691508307742 · ОГРНИП 325690000028112</small>
+      <small class="f-copy">© 2026 Барбершоп «МЕСТО». Все права защищены.</small>
+    </div>
+    <a href="#top" class="f-up">НАВЕРХ ↑</a>
+  </div>
+</footer>
 
 <script>
 const YCLIENTS_URL = 'https://n2828525.yclients.ru/';
